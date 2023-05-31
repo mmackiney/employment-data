@@ -1,6 +1,9 @@
+import logging
 import os
 import requests
 from requests.auth import HTTPBasicAuth
+
+logging.basicConfig(level=logging.INFO)
 
 API_KEY = os.getenv(FIVETRAN_API_KEY)
 API_SECRET = os.getenv(FIVETRAN_API_SECRET)
@@ -11,4 +14,4 @@ auth = HTTPBasicAuth(API_KEY, API_SECRET)
 url = "https://api.fivetran.com/v1/connectors/{}/force".format(CONNECTOR_ID)
 
 response = requests.post(url=url,auth=auth).json()
-print(response)
+logging.info(response)

@@ -1,0 +1,15 @@
+
+version: 2
+
+sources:
+  - name: employee_data
+    database: fivetran
+    schema: employee_data
+    tables:
+      - name: departments
+      - name: departures
+      - name: dept_emp
+      - name: dept_manager
+      - name: employees
+      - name: salaries
+      - name: titles
