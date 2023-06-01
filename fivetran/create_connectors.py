@@ -1,5 +1,6 @@
 import logging
 import os
+
 import requests
 from requests.auth import HTTPBasicAuth
 
@@ -8,6 +9,8 @@ logging.basicConfig(level=logging.INFO)
 API_KEY = os.getenv("FIVETRAN_API_KEY")
 API_SECRET = os.getenv("FIVETRAN_API_SECRET")
 GROUP_ID = os.getenv("FIVETRAN_GROUP_ID")
+S3_BUCKET = os.getenv("S3_BUCKET")
+S3_PREFIX = os.getenv("S3_PREFIX")
 S3_ARN = os.getenv("S3_BUCKET_ARN")
 
 auth = HTTPBasicAuth(API_KEY, API_SECRET)
@@ -43,8 +46,8 @@ for table in tables:
             "table": table,
             "is_public": "false",
             "role_arn": S3_ARN,
-            "bucket": "av-takehome-challenge",
-            "prefix": "data",
+            "bucket": S3_BUCKET,
+            "prefix": S3_PREFIX,
             "pattern": f"{table}.csv",
             "file_type": "csv",
             "on_error": "fail",
@@ -53,5 +56,5 @@ for table in tables:
             "list_strategy": "complete_listing",
         }
     }
-    s3_response = requests.post(url=connector_url,auth=auth,json=body).json()
+    s3_response = requests.post(url=connector_url, auth=auth, json=body).json()
     logging.info(s3_response)

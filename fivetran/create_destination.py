@@ -1,5 +1,6 @@
 import logging
 import os
+
 import requests
 from requests.auth import HTTPBasicAuth
 
@@ -31,16 +32,16 @@ snowflake_body = {
     "service": "snowflake",
     "group_id": group_id,
     "region": "AWS_US_EAST_1",
-    "time_zone_offset":"-5",
+    "time_zone_offset": "-5",
     "config": {
         "auth": "PASSWORD",
         "host": SNOWFLAKE_HOST,
         "port": "443",
-        "database": "FIVETRAN",
+        "database": "EMPLOYEE_DATA",
         "user": SNOWFLAKE_USERNAME,
         "password": SNOWFLAKE_PASSWORD,
     }
 }
 
-snowflake_response = requests.post(url=destination_url,auth=auth,json=snowflake_body).json()
+snowflake_response = requests.post(url=destination_url, auth=auth, json=snowflake_body).json()
 logging.info(snowflake_response)

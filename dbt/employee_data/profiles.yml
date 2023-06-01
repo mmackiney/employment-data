@@ -1,0 +1,13 @@
+employee_data:
+  outputs:
+    dev:
+      account: "{{ env_var('SNOWFLAKE_HOST') }}"
+      database: EMPLOYEE_DATA
+      password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
+      role: ACCOUNTADMIN
+      threads: 1
+      schema: transformed
+      type: snowflake
+      user: "{{ env_var('SNOWFLAKE_USERNAME') }}"
+      warehouse: LOADING
+  target: dev

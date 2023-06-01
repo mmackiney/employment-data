@@ -2,9 +2,9 @@
 version: 2
 
 sources:
-  - name: employee_data
-    database: fivetran
-    schema: employee_data
+  - name: raw
+    database: employee_data
+    schema: raw
     tables:
       - name: departments
       - name: departures
